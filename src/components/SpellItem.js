@@ -1,11 +1,9 @@
 import React from 'react';
 
-const SpellItem = ({spell}) => {
-
-    
+const SpellItem = ({spell, index}) => {
 
     return (
-        <li>{spell.name}</li>
+        <option value={spell.index} key={index}>{spell.name}</option>
     )
 
 }

@@ -13,13 +13,17 @@ const SpellContainer = () => {
     const getSpells = () => {
         fetch("https://www.dnd5eapi.co/api/spells")
         .then(res => res.json())
-        .then(spells => console.log(spells.results))
+        .then(spells => setSpells(spells.results))
+    }
+
+    const OnSpellClick = function (spell) {
+        setSelectedSpell(spell);
     }
 
     return(
         <div id="spell-container">
         <h3>List of Spells</h3>
-        <SpellList spells={spells}/>
+        <SpellList spells={spells} OnSpellClick={OnSpellClick}/>
         </div>
     )
 
