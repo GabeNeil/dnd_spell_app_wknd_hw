@@ -1,11 +1,11 @@
 import React from 'react';
-import SpellItem from './SpellItem.js'
+
 
 
 const SpellList = ({spells, handleSpellSelected}) => {
     
-    const spellOption = spells.map((spell, index) => {
-        return <SpellItem spell={spell} key={index}/>
+    const spellOptions = spells.map((spell, index) => {
+        return <option value={spell.index} key={index} url={spell.url}>{spell.name} </option>
     })
 
     const onSpellSelected = (index) => {
@@ -17,7 +17,7 @@ const SpellList = ({spells, handleSpellSelected}) => {
         <div id="spell-list-box">
             <select id="spell-selector" defaultValue="default" onChange={onSpellSelected}>
                 <option disabled value="default">Choose a spell</option>
-                {spellOption}
+                {spellOptions}
             </select>
         </div>
     )
