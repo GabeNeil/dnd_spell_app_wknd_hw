@@ -8,7 +8,7 @@ function App() {
     <body>
       <header>
         <h1>Dungeons and Dragons 5th Edition</h1>
-        <h2>Spell List</h2>
+        <h2>Gabe's Spell List</h2>
       </header>
     <div className="App">
       <SpellContainer />
