@@ -6,7 +6,7 @@ const SpellContainer = () => {
     const [spells, setSpells] = useState([]);
     const [selectedSpellIndex, setSelectedSpellIndex] = useState("")
     const [selectedSpell, setSelectedSpell] = useState(null);
-    // const [spellDetail, setSpellDetail] = useState([]);
+    const [spellDetail, setSpellDetail] = useState([]);
 
 
     
@@ -19,9 +19,9 @@ const SpellContainer = () => {
         setSelectedSpell(spell);
     }, [spells, selectedSpellIndex])
 
-    // useEffect(() => {
-    //     getSpellDetail()
-    // }, [selectedSpell]);
+    useEffect(() => {
+        getSpellDetail()
+    }, [selectedSpell]);
 
     const getSpells = () => {
         fetch("https://www.dnd5eapi.co/api/spells")
@@ -29,15 +29,19 @@ const SpellContainer = () => {
         .then(spells => setSpells(spells.results))
     }
 
-    // const getSpellDetail = (selectedSpell) => {
-    //     fetch(`https://www.dnd5eapi.co/${selectedSpell.url}`)
-    //     .then(res => res.json())
-    //     .then(spellDetail => setSpellDetail(spellDetail))
-    // }
+    const getSpellDetail = () => {
+        if(selectedSpell) {
+            fetch(`https://www.dnd5eapi.co${selectedSpell.url}`)
+            .then(res => res.json())
+            .then(spellDetail => setSpellDetail(spellDetail))
+    }
+    }
 
-    const handleSpellSelected = (event) => {
-        setSelectedSpellIndex(event.target.value)
-        // getSpellDetail(spell)
+    const handleSpellSelected = (index) => {
+        const foundSpell = spells.find((spell) => {
+            return spell.index === index
+        })
+        setSelectedSpell(foundSpell)
     }
 
 
@@ -47,7 +51,7 @@ const SpellContainer = () => {
         <h3>List of Spells</h3>
         <SpellList spells={spells} handleSpellSelected={handleSpellSelected} />
         </div>
-        {selectedSpell? <SpellDetail selectedSpell={selectedSpell} /> : null}
+        {selectedSpell ? <SpellDetail selectedSpell={selectedSpell} spellDetail={spellDetail}/> : null}
         </>
     )
 

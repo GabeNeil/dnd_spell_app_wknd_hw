@@ -8,8 +8,8 @@ const SpellList = ({spells, handleSpellSelected}) => {
         return <option value={spell.index} key={index} url={spell.url}>{spell.name} </option>
     })
 
-    const onSpellSelected = (index) => {
-        handleSpellSelected(index)
+    const onSpellSelected = (event) => {
+        handleSpellSelected(event.target.value)
     }
 
 

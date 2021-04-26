@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SpellDetail = ({selectedSpell}) => {
+const SpellDetail = ({selectedSpell, spellDetail}) => {
 
     
 
@@ -8,7 +8,7 @@ const SpellDetail = ({selectedSpell}) => {
         <div id="spell-detail">
             <h3>{selectedSpell.name}</h3>
             <h4>Description</h4>
-            {/* <p>{spellDetail.desc}</p> */}
+            <p>{spellDetail.desc}</p>
         </div>
     )
 }
